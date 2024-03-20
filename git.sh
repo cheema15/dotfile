@@ -31,11 +31,11 @@ git_setup() {
 
     echo -e '[INFO] Finished setting git configurations. Continuing...'
 
-    # Copy .gitconfig to repository
-    cp ~/.gitconfig .gitconfig
-
-    # Create symbolic link to ~/.gitconfig with sudo
-    sudo ln -sf /home/cheema15/dotfiles/.gitconfig ~/.gitconfig 
+    # Create symbolic link to ~/.gitconfig
+    echo -e "[INFO] Creating symbolic link to ~/.gitconfig..."
+    ln -sf /home/cheema15/dotfiles/.gitconfig ~/.gitconfig
+    echo -e "[INFO] Symbolic link created successfully."
 }
 
 git_setup
+
