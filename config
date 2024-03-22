@@ -1,0 +1,5 @@
+Host fry
+        User w695sxc
+        HostName fry.cs.wright.edu
+	IdentityFile /home/cheema15/.ssh/id_ed25519
+        Port 22

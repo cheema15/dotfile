@@ -1,24 +1,38 @@
 #!/bin/bash
 
-setup_bashrc() {
-    echo "[INFO] Setting up .bashrc..."
+bash_config() {
+    # Get the current user's username
+    ME=$(whoami)
 
-    # Make two useful aliases
-    echo 'alias ll="ls -alF"' >> ~/.bashrc
-    echo 'alias ..="cd .."' >> ~/.bashrc
+    # Define the path to your custom .bashrc file
+    CUSTOM_BASHRC="/home/$ME/dotfiles/bashrc"
 
-    # "awesome" bash aliases
-    echo 'alias awesome="echo This is awesome!"' >> ~/.bashrc
+    # Check if the custom .bashrc file exists
+    if [ ! -f "$CUSTOM_BASHRC" ]; then
+        echo "Error: Custom .bashrc file not found at $CUSTOM_BASHRC"
+        exit 1
+    fi
 
-    # Add aliases from "The Ultimate B.A. .bashrc" file
-    # Add additional packages if required for these aliases
+    # Backup existing .bashrc file
+    if [ -f "/home/$ME/.bashrc" ]; then
+        echo "Backing up existing .bashrc file..."
+        mv /home/$ME/.bashrc /home/$ME/.bashrc_backup
+    fi
 
-    # Copy .bashrc to repository
-    cp ~/.bashrc /home/cheema15/dotfiles/.bashrc
+    # Link custom .bashrc file
+    echo "Linking custom .bashrc file..."
+    ln -sf "$CUSTOM_BASHRC" /home/$ME/.bashrc
 
-    # Create symbolic link to ~/.bashrc
-    ln -sf /home/cheema15/dotfiles/.bashrc ~/.bashrc
+    # Source the linked .bashrc file
+    echo "Sourcing .bashrc file..."
+    source /home/$ME/.bashrc
+
+    # Copy .bashrc to git repository
+    echo "Copying .bashrc to git repository..."
+    cp /home/$ME/.bashrc /home/cheema15/dotfiles/
+
+    echo "Bash configuration applied successfully."
 }
 
-setup_bashrc
+bash_config
 
