@@ -1,0 +1,7 @@
+[user]
+	name = cheema15
+	email = cheema.15@wright.edu
+[core]
+	editor = vim
+[help]
+	autocorrect = 50
