@@ -46,11 +46,10 @@ if [[ "$(id -u)" -eq 0 ]]; then
     fi
 
     # Run scripts one by one
-    bash bash.sh
-    bash git.sh
-    bash ssh.sh
-    bash vim.sh
-
+    bash configfiles/bash.sh
+    bash configfiles/git.sh
+    bash configfiles/ssh.sh
+    bash configfiles/vim.sh
 else
     echo "Script is not running as root, exiting..." 1>&2
     exit 1
